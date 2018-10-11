@@ -42,11 +42,6 @@ export default {
     Second,
     Third,
   },
-  watch: {
-    e1(val) {
-      console.log(val);
-    },
-  },
   data() {
     return {
       e1: 0

@@ -1,9 +1,7 @@
 <template>
-  <div class="first">
-    <h1>First page</h1>
-
-  <v-container grid-list-md>
-    <v-layout row>
+  <v-container grid-list-md align-center>
+    <h1 class="nav">First page</h1>
+    <v-layout row column>
       <v-flex xs12 sm12>
         <v-text-field
           label="First Name"
@@ -89,17 +87,16 @@
         ></v-text-field>
       </v-flex>
     </v-layout>
-  </v-container>
 
     <v-btn
       color="primary"
       @click="gotoEvt"
     >
-      Continue
+      OK - Start my Quote
     </v-btn>
 
-    <v-btn flat>Cancel</v-btn>
-  </div>
+    <v-btn flat>No Thanks</v-btn>
+  </v-container>
 </template>
 
 <script>
@@ -151,5 +148,8 @@ export default {
 }
 .mr15 {
   margin-right: 15px;
+}
+.nav {
+  margin-bottom: 5%;
 }
 </style>
