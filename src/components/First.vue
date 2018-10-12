@@ -1,6 +1,6 @@
 <template>
   <v-container grid-list-md align-center>
-    <h1 class="nav">First page</h1>
+    <div class="nav">First page</div>
     <v-layout row column>
       <v-flex xs12 sm12>
         <v-text-field
@@ -153,6 +153,10 @@ export default {
   margin-right: 15px;
 }
 .nav {
-  margin-bottom: 5%;
+  text-align: center;
+  font-size: 35px;
+  font-weight: 900;
+  margin-bottom: 30px;
+  letter-spacing: 4px;
 }
 </style>
