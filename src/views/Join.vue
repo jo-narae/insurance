@@ -17,15 +17,15 @@
 
           <v-stepper-items>
             <v-stepper-content step="1">
-              <first :e1.sync="e1"></first>
+              <s1 :e1.sync="e1"></s1>
             </v-stepper-content>
 
             <v-stepper-content step="2">
-              <second :e1.sync="e1"></second>
+              <s2 :e1.sync="e1"></s2>
             </v-stepper-content>
 
             <v-stepper-content step="3">
-              <third :e1.sync="e1"></third>
+              <s3 :e1.sync="e1"></s3>
             </v-stepper-content>
           </v-stepper-items>
         </v-stepper>
@@ -35,16 +35,16 @@
 </template>
 
 <script>
-import First from '@/components/First'
-import Second from '@/components/Second'
-import Third from '@/components/Third'
+import S1 from '@/components/S1'
+import S2 from '@/components/S2'
+import S3 from '@/components/S3'
 
 export default {
   name: 'join',
   components: {
-    First,
-    Second,
-    Third,
+    S1,
+    S2,
+    S3,
   },
   data() {
     return {

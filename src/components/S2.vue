@@ -12,7 +12,7 @@
         Disagree
       </v-btn>
     </v-layout>
-    <v-layout v-if="!securityDisabled" row class="mt30">
+    <v-layout v-if="!disabled" row class="mt30">
       <v-flex xs11 order-lg2 class="mr15">
         <v-text-field
           label="Social Security Number"
@@ -31,18 +31,18 @@
 
 <script>
 export default {
-  name: 'second',
+  name: 's2',
   props: {
     e1: 0,
   },
   data: () => ({
     date: null,
     securityNumber: '',
-    securityDisabled: true,
+    disabled: true,
   }),
   methods: {
     agreeEvt() {
-      this.securityDisabled = false;
+      this.disabled = false;
     },
     gotoEvt() {
       this.$emit('update:e1', 3);

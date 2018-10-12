@@ -101,7 +101,7 @@
 
 <script>
 export default {
-  name: 'first',
+  name: 's1',
   props: {
     e1: 0,
   },
@@ -157,6 +157,6 @@ export default {
   font-size: 35px;
   font-weight: 900;
   margin-bottom: 30px;
-  letter-spacing: 4px;
+  letter-spacing: 3px;
 }
 </style>
