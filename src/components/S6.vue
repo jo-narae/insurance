@@ -2,11 +2,13 @@
   <v-container grid-list-md align-center>
     <div class="nav">
       <v-layout row justify-center>
-        <v-flex xs10 sm10>
+        <v-flex xs11 sm11>
           This is S6 Page
         </v-flex>
-        <v-flex xs2 sm2>
-          This is S6 Page
+        <v-flex xs1 sm1 v-if="disabled">
+          <v-btn color="primary" @click="gotoEvt">
+            Next
+          </v-btn>
         </v-flex>
       </v-layout>
     </div>
