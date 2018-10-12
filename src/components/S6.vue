@@ -1,7 +1,16 @@
 <template>
   <v-container grid-list-md align-center>
-    <div class="nav">This is S6 Page</div>
-    <v-layout row v-if="confirm" class="content-info">
+    <div class="nav">
+      <v-layout row justify-center>
+        <v-flex xs10 sm10>
+          This is S6 Page
+        </v-flex>
+        <v-flex xs2 sm2>
+          This is S6 Page
+        </v-flex>
+      </v-layout>
+    </div>
+    <v-layout row class="content-info">
       <v-container grid-list-md align-center>
         <v-layout v-if="disabled" row>
           <v-flex xs12 sm12>
@@ -107,19 +116,14 @@
     </v-layout>
       </v-container>
     </v-layout>
-
-    <v-layout row v-else class="content-info">
-      - No
-    </v-layout>
   </v-container>
 </template>
 
 <script>
 export default {
-  name: 's5',
+  name: 's6',
   props: {
     e1: 0,
-    confirm: Boolean,
   },
   watch: {
     date (val) {
@@ -156,7 +160,7 @@ export default {
       this.disabled = false;
     },
     gotoEvt() {
-      this.$emit('update:e1', 5);
+      this.$emit('update:e1', 7);
     },
     submitEvt() {
       this.confirmed = true;

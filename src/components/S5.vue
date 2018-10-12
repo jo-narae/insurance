@@ -52,7 +52,6 @@ export default {
   name: 's5',
   props: {
     e1: 0,
-    confirm: Boolean,
   },
   data: () => ({
     gender: '',
@@ -63,8 +62,11 @@ export default {
   }),
   methods: {
     confrimEvt(flag) {
-      this.$emit('update:e1', 6);
-      this.$emit('update:confirm', flag);
+      if (flag) {
+        this.$emit('update:e1', 6);
+      } else {
+        this.$emit('update:e1', 7);
+      }
       this.dialog = false;
     }
   },
