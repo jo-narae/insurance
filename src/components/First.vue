@@ -87,15 +87,15 @@
         ></v-text-field>
       </v-flex>
     </v-layout>
+    <v-layout row class="justify-center">
+      <v-btn color="primary" @click="gotoEvt">
+        OK - Start my Quote
+      </v-btn>
 
-    <v-btn
-      color="primary"
-      @click="gotoEvt"
-    >
-      OK - Start my Quote
-    </v-btn>
-
-    <v-btn flat>No Thanks</v-btn>
+      <v-btn flat @click="initEvt">
+        No Thanks
+      </v-btn>
+    </v-layout>
   </v-container>
 </template>
 
@@ -125,6 +125,9 @@ export default {
   methods: {
     gotoEvt() {
       this.$emit('update:e1', 2);
+    },
+    initEvt() {
+      this.$router.push({ path: '/' });
     },
     formatDate (date) {
       if (!date) return null
