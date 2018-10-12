@@ -57,7 +57,6 @@
               </div>
             </v-card-title>
             <v-bottom-nav
-              :active.sync="bottomNav"
               :value="true"
               absolute
               color="transparent"
@@ -99,9 +98,11 @@ export default {
     e1: 0,
   },
   data: () => ({
-    date: null,
-    securityNumber: '',
     disabled: true,
+    type: '',
+    year: '',
+    make: '',
+    model: '',
     cards: [
       { year: 2009, name: 'sonata', flex: 3 },
       { year: 2009, name: 'sonata', flex: 3 }
@@ -112,7 +113,7 @@ export default {
       this.disabled = false;
     },
     gotoEvt() {
-      this.$emit('update:e1', 1);
+      this.$emit('update:e1', 4);
     },
     initEvt() {
       this.$router.push({ path: '/' });
