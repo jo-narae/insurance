@@ -1,7 +1,7 @@
 <template>
   <v-container grid-list-md align-center>
     <div class="nav">Add Vehides to Your Quote</div>
-    <v-layout v-if="disabled" row column>
+    <v-layout row column>
       <v-flex xs12 sm12>
         <v-text-field
           label="Type"
@@ -10,7 +10,7 @@
         ></v-text-field>
       </v-flex>
     </v-layout>
-    <v-layout v-if="disabled" row>      
+    <v-layout row>      
       <v-flex xs12 sm12>
         <v-text-field
           label="Year"
@@ -19,7 +19,7 @@
         ></v-text-field>
       </v-flex>
     </v-layout>
-    <v-layout v-if="disabled" row>      
+    <v-layout row>      
       <v-flex xs12 sm12>
         <v-text-field
           label="Make"
@@ -28,7 +28,7 @@
         ></v-text-field>
       </v-flex>
     </v-layout>
-    <v-layout v-if="disabled" row>      
+    <v-layout row>      
       <v-flex xs12 sm12>
         <v-text-field
           label="Model"
@@ -37,7 +37,7 @@
         ></v-text-field>
       </v-flex>
     </v-layout>
-    <v-layout v-if="disabled" row justify-center>
+    <v-layout row justify-center>
       <v-btn color="primary" @click="addEvt">
         Add
       </v-btn>

@@ -90,10 +90,21 @@
           </v-flex>
         </v-layout>
         <v-layout v-if="!disabled" row justify-center>
-          <v-btn color="primary">
-            Finish
+          <v-btn color="primary" @click="submitEvt">
+            Submit
           </v-btn>
         </v-layout>
+        <v-layout v-if="confirmed" row class="headline justify-center content-info mt30">
+          Additional Drivers?
+        </v-layout>
+        <v-layout v-if="confirmed" row justify-center>
+          <v-btn color="primary" @click="initEvt">
+            Yes
+          </v-btn>
+          <v-btn flat @click="gotoEvt">
+            No
+          </v-btn>
+    </v-layout>
       </v-container>
     </v-layout>
 
@@ -116,7 +127,9 @@ export default {
     }
   },
   data: () => ({
+    menu1: false,
     disabled: true,
+    confirmed: false,
     date: null,
     dateFormatted: null,
     firstName: '',
@@ -141,7 +154,26 @@ export default {
     },
     regEvt() {
       this.disabled = false;
-    }
+    },
+    gotoEvt() {
+      this.$emit('update:e1', 5);
+    },
+    submitEvt() {
+      this.confirmed = true;
+    },
+    initEvt() {
+      this.menu1 = false;
+      this.disabled = true;
+      this.confirmed = false;
+      this.date = null;
+      this.dateFormatted = null;
+      this.firstName = '';
+      this.lastName = '';
+      this.licenseNumber = '';
+      this.maritalStatus = '';
+      this.gender = '';
+      this.policyholder = '';
+    },
   },
 }
 </script>
