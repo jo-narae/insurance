@@ -29,7 +29,7 @@
       :clipped-left="clipped"
     >
       <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
-      <v-toolbar-title v-text="title"></v-toolbar-title>
+      <v-toolbar-title class="hand-pointer" v-text="title" @click="initEvt"></v-toolbar-title>
       <v-spacer></v-spacer>
     </v-toolbar>
     <v-content>
@@ -51,11 +51,23 @@ export default {
       fixed: false,
       items: [{
         icon: 'fas fa-shapes',
-        title: 'Inspire'
+        title: 'Insurance'
       }],
       miniVariant: false,
       title: 'Insurance'
     }
+  },
+  methods: {
+    initEvt() {
+      this.$router.push({ path: '/' });
+    },
   }
 }
 </script>
+
+<style>
+.hand-pointer {
+  cursor: pointer;
+}
+</style>
+
