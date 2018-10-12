@@ -38,7 +38,7 @@
         </v-radio-group>
       </v-flex>
     </v-layout>
-    <v-layout row class="justify-center">
+    <v-layout row justify-center>
       <v-btn color="primary" @click="gotoEvt">
         Next
       </v-btn>
@@ -60,7 +60,7 @@ export default {
   }),
   methods: {
     gotoEvt() {
-      this.$emit('update:e1', 4);
+      this.$emit('update:e1', 5);
     },
     initEvt() {
       this.$router.push({ path: '/' });

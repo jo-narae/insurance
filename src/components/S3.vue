@@ -37,7 +37,7 @@
         ></v-text-field>
       </v-flex>
     </v-layout>
-    <v-layout row class="justify-center">
+    <v-layout row justify-center>
       <v-btn color="primary" @click="addEvt">
         Add
       </v-btn>

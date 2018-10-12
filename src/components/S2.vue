@@ -4,7 +4,7 @@
     <v-layout row class="justify-center content-info">
       concent for using private information.
     </v-layout>
-    <v-layout row class="justify-center">
+    <v-layout row justify-center>
       <v-btn color="primary" @click="agreeEvt">
         Agree
       </v-btn>
