@@ -48,7 +48,7 @@
 
 <script>
 export default {
-  name: 's3',
+  name: 's4',
   props: {
     e1: 0,
   },
@@ -72,5 +72,6 @@ export default {
 <style>
 .label {
   color: #8c8c8c;
+  font-size: 12px;
 }
 </style>

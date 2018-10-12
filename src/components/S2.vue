@@ -1,10 +1,10 @@
 <template>
   <v-container grid-list-md align-center>
     <div class="nav">Second page</div>
-    <v-layout row class="justify-center content-info">
+    <v-layout v-if="disabled" row class="justify-center content-info">
       concent for using private information.
     </v-layout>
-    <v-layout row justify-center>
+    <v-layout v-if="disabled" row justify-center>
       <v-btn color="primary" @click="agreeEvt">
         Agree
       </v-btn>
@@ -13,14 +13,14 @@
       </v-btn>
     </v-layout>
     <v-layout v-if="!disabled" row class="mt30">
-      <v-flex xs11 order-lg2 class="mr15">
+      <v-flex xs10 order-lg2>
         <v-text-field
           label="Social Security Number"
           placeholder="Please Input Social Security Number"
           v-model="securityNumber"
         ></v-text-field>
       </v-flex>
-      <v-flex xs1 order-lg2> 
+      <v-flex xs2 order-lg2> 
         <v-btn @click="gotoEvt">
           Send
         </v-btn>

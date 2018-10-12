@@ -12,7 +12,9 @@
             <v-divider></v-divider>
             <v-stepper-step :complete="e1 > 4" step="4"></v-stepper-step>
             <v-divider></v-divider>
-            <v-stepper-step step="5"></v-stepper-step>
+            <v-stepper-step :complete="e1 > 5" step="5"></v-stepper-step>
+            <v-divider></v-divider>
+            <v-stepper-step step="6"></v-stepper-step>
           </v-stepper-header>
 
           <v-stepper-items>
@@ -33,8 +35,13 @@
             </v-stepper-content>
 
             <v-stepper-content step="5">
-              <s5 :e1.sync="e1"></s5>
+              <s5 :e1.sync="e1" :confirm.sync="confirm"></s5>
             </v-stepper-content>
+
+            <v-stepper-content step="6">
+              <s6 :e1.sync="e1" :confirm="confirm"></s6>
+            </v-stepper-content>
+
           </v-stepper-items>
         </v-stepper>
       </v-flex>
@@ -48,6 +55,7 @@ import S2 from '@/components/S2'
 import S3 from '@/components/S3'
 import S4 from '@/components/S4'
 import S5 from '@/components/S5'
+import S6 from '@/components/S6'
 
 export default {
   name: 'join',
@@ -57,10 +65,12 @@ export default {
     S3,
     S4,
     S5,
+    S6,
   },
   data() {
     return {
-      e1: 0
+      e1: 0,
+      confirm: null,
     }
   }
 }

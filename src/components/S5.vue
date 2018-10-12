@@ -49,9 +49,10 @@
 
 <script>
 export default {
-  name: 's3',
+  name: 's5',
   props: {
     e1: 0,
+    confirm: Boolean,
   },
   data: () => ({
     gender: '',
@@ -59,25 +60,13 @@ export default {
     parkingZipcode: '',
     ownership: '',
     dialog: false,
-    confirm: null,
   }),
   methods: {
-    gotoEvt() {
-      this.$emit('update:e1', 4);
-    },
-    initEvt() {
-      this.$router.push({ path: '/' });
-    },
     confrimEvt(flag) {
-      this.confirm = flag;
+      this.$emit('update:e1', 6);
+      this.$emit('update:confirm', flag);
       this.dialog = false;
     }
   },
 }
 </script>
-
-<style>
-.label {
-  color: #8c8c8c;
-}
-</style>

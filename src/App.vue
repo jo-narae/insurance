@@ -35,7 +35,7 @@
     <v-content>
       <router-view/>
     </v-content>
-    <v-footer :fixed="fixed" app justify-center>
+    <v-footer :fixed="fixed" app class="justify-center">
       &copy; 2018 — <strong>Sung-Yeol Yun</strong>
     </v-footer>
   </v-app>
