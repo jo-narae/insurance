@@ -139,6 +139,8 @@ export default {
       .catch(err => console.log(err));
     },
     nextEvt(res) {
+      //console.log(res.data._links.self.href);
+      this.$session.set('customer', res.data._links.self.href);
       this.$emit('update:e1', 2);
     },
     initEvt() {
