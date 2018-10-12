@@ -124,6 +124,21 @@ export default {
   },
   methods: {
     gotoEvt() {
+      const baseURI = 'http://localhost:18080';
+      this.$http.post(`${baseURI}/customer`, {
+        firstName:this.firstName,
+        lastName:this.lastName,
+        birthDate:this.date,
+        streetAddress:this.streetAddress,
+        aptUnitNumber:this.aptUnit,
+        city:this.city,
+        state:this.state,
+        zipcode:this.zipcode
+      })
+      .then(res => this.nextEvt(res))
+      .catch(err => console.log(err));
+    },
+    nextEvt(res) {
       this.$emit('update:e1', 2);
     },
     initEvt() {
