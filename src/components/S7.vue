@@ -18,13 +18,18 @@
                 item-text="value"
                 item-value="id"
                 v-model="pickOptions[(i*product.coverageItems.length+j)]"
-                label="Solo field"
+                :label="`Please Select ${ item.name }`"
                 solo
               ></v-select>
             </v-flex>
           </v-layout>
         </v-card>
       </v-flex>
+    </v-layout>
+    <v-layout row justify-center>
+      <v-btn color="primary" @click="finishEvt">
+        Finish
+      </v-btn>
     </v-layout>
   </v-container>
 </template>
@@ -38,74 +43,44 @@ export default {
   data () {
     return {
       pickOptions: [],
-      products: [
-        {        
-          name: 'Insurance Product 1',
-          id: 'P1',
-          coverageItems: [
-            { name: 'coverage-item 1',
-              id: 'C1', 
-              coverageItemOptions: [
-                { id: 'CO1', value: '100' },                
-                { id: 'CO2', value: '200' },                
-                { id: 'CO3', value: '300' },
-              ],
-            },
-           { name: 'coverage-item 2',
-              id: 'C2', 
-              coverageItemOptions: [
-                { id: 'CO4', value: '100' },                
-                { id: 'CO5', value: '200' },                
-                { id: 'CO6', value: '300' },
-              ],
-            },
-            { name: 'coverage-item 3',
-              id: 'C2', 
-              coverageItemOptions: [
-                { id: 'CO7', value: '100' },                
-                { id: 'CO8', value: '200' },                
-                { id: 'CO9', value: '300' },
-              ],
-            },
-          ],
-          
-        },
-        {        
-          name: 'Insurance Product 1',
-          id: 'P1',
-          coverageItems: [
-            { name: 'coverage-item 1',
-              id: 'C1', 
-              coverageItemOptions: [
-                { id: 'CO1', value: '100' },                
-                { id: 'CO2', value: '200' },                
-                { id: 'CO3', value: '300' },
-              ],
-            },
-           { name: 'coverage-item 2',
-              id: 'C2', 
-              coverageItemOptions: [
-                { id: 'CO4', value: '100' },                
-                { id: 'CO5', value: '200' },                
-                { id: 'CO6', value: '300' },
-              ],
-            },
-            { name: 'coverage-item 3',
-              id: 'C2', 
-              coverageItemOptions: [
-                { id: 'CO7', value: '100' },                
-                { id: 'CO8', value: '200' },                
-                { id: 'CO9', value: '300' },
-              ],
-            },
-          ],
-          
-        },
-      ]
+      products: [],
     }
   },
   methods: {
-  }
+    setProduct(res) {
+      this.products = res.data._embedded['insurance-product'];
+    },
+    finishEvt() {
+      let data = '';
+      const baseURI = 'http://localhost:18080';
+      const options = this.pickOptions;
+      for (let i = 0; i < options.length; i += 1) {
+        data += `${ baseURI }/coverage-item-option/` + options[i] + '\n';
+      }
+      this.$http.patch(this.$session.get('insurance-policy') + '/coverageItemOptions', data, {
+        headers: {
+          'Content-Type': 'text/uri-list',
+        }
+      })
+      .then(this.calculateEvt())
+      .catch(err => console.log(err));
+    },
+    calculateEvt() {
+      this.$http.post(this.$session.get('insurance-policy') + '/calculate')
+      .then(this.initEvt())
+      .catch(err => console.log(err));
+    },
+    initEvt() {
+      alert('Finish design insurance policy!');
+      this.$router.push({ path: '/' });
+    },
+  },
+  created() {
+    const baseURI = 'http://localhost:18080';
+    this.$http.get(`${baseURI}/insurance-product?projection=child`)
+    .then(res => this.setProduct(res))
+    .catch(err => console.log(err));
+  },
 }
 </script>
 
