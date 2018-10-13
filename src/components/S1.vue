@@ -87,6 +87,24 @@
         ></v-text-field>
       </v-flex>
     </v-layout>
+    <v-layout row>
+      <v-flex xs12 order-lg2>
+        <v-text-field
+          label="Email Address"
+          placeholder="Please Input Email Address"
+          v-model="emailAddress"
+        ></v-text-field>
+      </v-flex>
+    </v-layout>
+    <v-layout row>
+      <v-flex xs12 order-lg2>
+        <v-text-field
+          label="Health Insurance"
+          placeholder="Please Input Health Insurance"
+          v-model="healthInsurance"
+        ></v-text-field>
+      </v-flex>
+    </v-layout>
     <v-layout row justify-center>
       <v-btn color="primary" @click="gotoEvt">
         OK - Start my Quote
@@ -115,6 +133,8 @@ export default {
     city: '',
     zipcode: '',
     state: '',
+    emailAddress: '',
+    healthInsurance: '',
     menu1: false
   }),
   watch: {
@@ -126,20 +146,23 @@ export default {
     gotoEvt() {
       const baseURI = 'http://localhost:18080';
       this.$http.post(`${baseURI}/customer`, {
-        firstName:this.firstName,
-        lastName:this.lastName,
-        birthDate:this.date,
-        streetAddress:this.streetAddress,
-        aptUnitNumber:this.aptUnit,
-        city:this.city,
-        state:this.state,
-        zipcode:this.zipcode
+        firstName: this.firstName,
+        lastName: this.lastName,
+        birthDate: this.date,
+        streetAddress: this.streetAddress,
+        aptUnitNumber: this.aptUnit,
+        city: this.city,
+        state: this.state,
+        zipcode: this.zipcode,
+        policyholderInformation: {
+          emailAddress: this.emailAddress,
+          healthInsurance: this.healthInsurance,
+        }
       })
       .then(res => this.nextEvt(res))
       .catch(err => console.log(err));
     },
     nextEvt(res) {
-      //console.log(res.data._links.self.href);
       this.$session.set('customer', res.data._links.self.href);
       this.$emit('update:e1', 2);
     },
@@ -158,6 +181,12 @@ export default {
       const [month, day, year] = date.split('/')
       return `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`
     }
+  },
+  created() {
+    // session clear
+    this.$session.clear('customer');
+    this.$session.clear('vehicles');
+    this.$session.clear('vehicle');
   }
 }
 </script>

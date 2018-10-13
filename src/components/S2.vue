@@ -14,7 +14,7 @@
     </v-layout>
     <v-layout v-if="!disabled" row class="mt30">
       <v-flex xs10 order-lg2>
-        <v-text-field
+        <v-text-field type="number"
           label="Social Security Number"
           placeholder="Please Input Social Security Number"
           v-model="securityNumber"
@@ -45,8 +45,16 @@ export default {
       this.disabled = false;
     },
     gotoEvt() {
+      this.$http.patch(this.$session.get('customer'), {
+        socialSecurityNumber: this.securityNumber,
+      })
+      .then(res => this.nextEvt(res))
+      .catch(err => console.log(err));
+    },
+    nextEvt(res) {
+      this.$session.set('vehicles', res.data._links.vehicles.href);
       this.$emit('update:e1', 3);
-    },    
+    },
     initEvt() {
       this.$router.push({ path: '/' });
     },
