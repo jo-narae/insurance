@@ -82,7 +82,7 @@
             <v-text-field
               label="Marital Status"
               placeholder="Please Marital Status"
-              v-model="maritalStatus"
+              v-model="marritalStatus"
             ></v-text-field>
           </v-flex>
         </v-layout>
@@ -141,9 +141,10 @@ export default {
     firstName: '',
     lastName: '',
     licenseNumber: '',
-    maritalStatus: '',
+    marritalStatus: '',
     gender: '',
     policyholder: '',
+    addDriver: '',
   }),
   methods: {
     formatDate (date) {
@@ -159,12 +160,36 @@ export default {
       return `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`
     },
     regEvt() {
+      const baseURI = 'http://localhost:18080';
+      this.$http.post(`${baseURI}/customer`, {
+        firstName: this.firstName,
+        lastName: this.lastName,
+        birthDate: this.date,
+        driverLicenseNumber: this.licenseNumber,
+        gender: this.gender,
+        marritalStatus: this.marritalStatus
+      })
+      .then(res => this.disabledEvt(res))
+      .catch(err => console.log(err));
+    },
+    disabledEvt(res) {
+      this.addDriver = res.data._links.self.href;
       this.disabled = false;
     },
     gotoEvt() {
       this.$emit('update:e1', 7);
     },
     submitEvt() {
+      const baseURI = 'http://localhost:18080';
+      this.$http.post(`${baseURI}/insured-driver`, {
+        customer: this.addDriver,
+        relationToPolicyholder: this.policyholder,
+        insurancePolicy: this.$session.get('insurance-policy'),
+      })
+      .then(this.confirmedEvt())
+      .catch(err => console.log(err));
+    },
+    confirmedEvt() {
       this.confirmed = true;
     },
     initEvt() {
@@ -176,7 +201,7 @@ export default {
       this.firstName = '';
       this.lastName = '';
       this.licenseNumber = '';
-      this.maritalStatus = '';
+      this.marritalStatus = '';
       this.gender = '';
       this.policyholder = '';
     },
