@@ -8,16 +8,16 @@
               <div class="headline">{{ product.name }}</div>
             </v-flex>
           </v-layout>
-          <v-layout row wrap v-for="(item, j) in product.items" :key="j">
+          <v-layout row wrap v-for="(item, j) in product.coverageItems" :key="j">
             <v-flex xs6 sm6>
               {{ item.name }}
             </v-flex>
             <v-flex xs6 sm6 d-flex>
               <v-select
-                :items="item.options"
-                item-text="name"
+                :items="item.coverageItemOptions"
+                item-text="value"
                 item-value="id"
-                v-model="product.pickOptions[j]"
+                v-model="pickOptions[(i*product.coverageItems.length+j)]"
                 label="Solo field"
                 solo
               ></v-select>
@@ -37,70 +37,75 @@ export default {
   },
   data () {
     return {
+      pickOptions: [],
       products: [
         {        
           name: 'Insurance Product 1',
-          items: [
-            { name: 'coverage-item 1', 
-              options: [
-                { name: '선택 없음', id: '' },
-                { name: '100번 상품', id: '100' },                
-                { name: '200번 상품', id: '200' },                
-                { name: '300번 상품', id: '300' },
+          id: 'P1',
+          coverageItems: [
+            { name: 'coverage-item 1',
+              id: 'C1', 
+              coverageItemOptions: [
+                { id: 'CO1', value: '100' },                
+                { id: 'CO2', value: '200' },                
+                { id: 'CO3', value: '300' },
               ],
             },
-            { name: 'coverage-item 2', 
-              options: [
-                { name: '선택 없음', id: '' },
-                { name: '100번 상품', id: '100' },                
-                { name: '200번 상품', id: '200' },                
-                { name: '300번 상품', id: '300' },
+           { name: 'coverage-item 2',
+              id: 'C2', 
+              coverageItemOptions: [
+                { id: 'CO4', value: '100' },                
+                { id: 'CO5', value: '200' },                
+                { id: 'CO6', value: '300' },
               ],
             },
-            { name: 'coverage-item 3', 
-              options: [
-                { name: '선택 없음', id: '' },
-                { name: '100번 상품', id: '100' },                
-                { name: '200번 상품', id: '200' },                
-                { name: '300번 상품', id: '300' },
+            { name: 'coverage-item 3',
+              id: 'C2', 
+              coverageItemOptions: [
+                { id: 'CO7', value: '100' },                
+                { id: 'CO8', value: '200' },                
+                { id: 'CO9', value: '300' },
               ],
             },
           ],
-          pickOptions: [],
+          
         },
         {        
           name: 'Insurance Product 1',
-          items: [
-            { name: 'coverage-item 1', 
-              options: [
-                { name: '선택 없음', id: '' },
-                { name: '100번 상품', id: '100' },                
-                { name: '200번 상품', id: '200' },                
-                { name: '300번 상품', id: '300' },
+          id: 'P1',
+          coverageItems: [
+            { name: 'coverage-item 1',
+              id: 'C1', 
+              coverageItemOptions: [
+                { id: 'CO1', value: '100' },                
+                { id: 'CO2', value: '200' },                
+                { id: 'CO3', value: '300' },
               ],
             },
-            { name: 'coverage-item 2', 
-              options: [
-                { name: '선택 없음', id: '' },
-                { name: '100번 상품', id: '100' },                
-                { name: '200번 상품', id: '200' },                
-                { name: '300번 상품', id: '300' },
+           { name: 'coverage-item 2',
+              id: 'C2', 
+              coverageItemOptions: [
+                { id: 'CO4', value: '100' },                
+                { id: 'CO5', value: '200' },                
+                { id: 'CO6', value: '300' },
               ],
             },
-            { name: 'coverage-item 3', 
-              options: [
-                { name: '선택 없음', id: '' },
-                { name: '100번 상품', id: '100' },                
-                { name: '200번 상품', id: '200' },                
-                { name: '300번 상품', id: '300' },
+            { name: 'coverage-item 3',
+              id: 'C2', 
+              coverageItemOptions: [
+                { id: 'CO7', value: '100' },                
+                { id: 'CO8', value: '200' },                
+                { id: 'CO9', value: '300' },
               ],
             },
           ],
-          pickOptions: [],
-        }
+          
+        },
       ]
     }
   },
+  methods: {
+  }
 }
 </script>
 
