@@ -9,7 +9,7 @@
         <v-text-field
           label="Primary Vehicle Use"
           placeholder="Please Primary Vehicle Use"
-          v-model="vehicleUse"
+          v-model="primaryUsage"
         ></v-text-field>
       </v-flex>
     </v-layout>
@@ -54,21 +54,29 @@ export default {
     e1: 0,
   },
   data: () => ({
-    gender: '',
-    vehicleUse: '',
+    primaryUsage: '',
     parkingZipcode: '',
     ownership: '',
     dialog: false,
+    stepNumber: 6,
   }),
   methods: {
     confrimEvt(flag) {
-      if (flag) {
-        this.$emit('update:e1', 6);
-      } else {
-        this.$emit('update:e1', 7);
-      }
+      this.$http.patch(this.$session.get('vehicle'), {
+        primaryUsage: this.primaryUsage,
+        parkingZipcode: this.parkingZipcode,
+        ownership: this.ownership,
+      })
+      .then(res => this.nextEvt(res))
+      .catch(err => console.log(err));
+
+      if (flag) this.stepNumber = 6;
+      else this.stepNumber = 7;
       this.dialog = false;
-    }
+    },
+    nextEvt(res) {
+      this.$emit('update:e1', this.stepNumber);
+    },
   },
 }
 </script>

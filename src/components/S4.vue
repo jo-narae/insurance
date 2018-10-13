@@ -15,7 +15,7 @@
         <v-text-field
           label="Marital Status"
           placeholder="Please Marital Status"
-          v-model="maritalStatus"
+          v-model="marritalStatus"
         ></v-text-field>
       </v-flex>
     </v-layout>
@@ -24,7 +24,7 @@
         <v-text-field
           label="HighestEdulevel"
           placeholder="Please Input HighestEdulevel"
-          v-model="highestEdulevel"
+          v-model="edulevel"
         ></v-text-field>
       </v-flex>
     </v-layout>
@@ -32,7 +32,7 @@
       <v-flex xs12 sm12>
         <span>Has this driver had any!</span>
         <p>At Fault Accident in the last 5 years</p>
-        <v-radio-group v-model="accident" row>
+        <v-radio-group v-model="accidentHistory" row>
           <v-radio label="Yes" value="Y"></v-radio>
           <v-radio label="No" value="N"></v-radio>
         </v-radio-group>
@@ -54,12 +54,24 @@ export default {
   },
   data: () => ({
     gender: '',
-    maritalStatus: '',
-    highestEdulevel: '',
-    accident: '',
+    marritalStatus: '',
+    edulevel: '',
+    accidentHistory: '',
   }),
   methods: {
     gotoEvt() {
+      this.$http.patch(this.$session.get('customer'), {
+        gender: this.gender,
+        marritalStatus: this.marritalStatus,
+        policyholderInformation: {
+          highestEduLevel: this.edulevel,
+          accidentHistory: this.accidentHistory,
+        },
+      })
+      .then(res => this.nextEvt(res))
+      .catch(err => console.log(err));
+    },
+    nextEvt(res) {
       this.$emit('update:e1', 5);
     },
     initEvt() {

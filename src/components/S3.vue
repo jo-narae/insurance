@@ -147,11 +147,12 @@ export default {
           vehicle: this.$session.get('vehicle'),
           policyholder: this.$session.get('customer'),
         })
-        .then(this.gotoEvt())
+        .then(res => this.gotoEvt(res))
         .catch(err => console.log(err));
       }
     },
-    gotoEvt() {
+    gotoEvt(res) {
+      this.$session.set('insurance-policy', res.data._links.self.href);
       this.$emit('update:e1', 4);
     },
     initEvt() {

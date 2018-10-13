@@ -186,7 +186,8 @@ export default {
     // session clear
     this.$session.clear('customer');
     this.$session.clear('vehicles');
-    this.$session.clear('vehicle');
+    this.$session.clear('vehicle');    
+    this.$session.clear('insurance-policy');
   }
 }
 </script>
