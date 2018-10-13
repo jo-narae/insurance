@@ -45,11 +45,15 @@
     <v-layout v-if="!disabled" row class="justify-center mt30">
       <v-layout row wrap>
         <v-flex
-          v-for="card in cards"
-          v-bind="{ [`xs${card.flex}`]: true }"
-          :key="card.title"
+          class="hand-pointer"
+          v-for="(card, idx) in cards"
+          v-bind="{ [`xs${card.flex}`]: true }"          
+          v-bind:class="[card.select ? 'pick-card' : 'none-pick-card']"
+          :key="idx"
+          @click="pickEvt(idx)"
         >
           <v-card height="160px" color="white">
+            <v-icon class="like-it">favorite</v-icon>
             <v-card-title primary-title>
               <div>
                 <h3 class="headline mb-0">{{ card.year }}</h3>
@@ -104,8 +108,8 @@ export default {
     make: '',
     model: '',
     cards: [
-      { year: 2009, name: 'sonata', flex: 3 },
-      { year: 2009, name: 'sonata', flex: 3 }
+      { year: 2009, name: 'sonata', flex: 3, select: false, },
+      { year: 2009, name: 'sonata', flex: 3, select: false, }
     ],
   }),
   methods: {
@@ -118,6 +122,12 @@ export default {
     initEvt() {
       this.$router.push({ path: '/' });
     },
+    pickEvt(idx) {
+      for (let i = 0; i < this.cards.length; i += 1) {
+        if (i === idx) this.cards[i].select = true;
+        else this.cards[i].select = false;
+      }
+    }
   }
 }
 </script>
@@ -125,5 +135,20 @@ export default {
 <style>
 .content-info {
   font-size: 18px;
+}
+.like-it {
+  float: right;
+  font-size: 18px;
+  margin: 5px;
+  color: #d0d0d0 !important;
+}
+.none-pick-card {
+  border: 2px solid #ffffff;
+}
+.pick-card {
+  border: 2px solid #333333;
+}
+.pick-card i {
+  color: #333333 !important;
 }
 </style>
